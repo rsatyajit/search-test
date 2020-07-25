@@ -35,10 +35,10 @@ class List extends React.Component {
                     data: [...prevState.data, ...response.data.items]
                 }))
                 this.setState({ totalItems: response.data.total_count })
-                this.storeSearchResults();
+                if (this.state.search && this.state.page === 1) this.storeSearchResults();
             } else {
                 this.setState({ data: [], totalItems: 0 });
-                this.storeSearchResults();
+                if (this.state.search && this.state.page === 1) this.storeSearchResults();
             }
 
         });

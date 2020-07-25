@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const baseurl = "http://localhost:8000";
+const baseurl = "http://localhost:8000/api";
 
 class dataHandler {
     fetchGitrepos = (options) => {
@@ -17,7 +17,7 @@ class dataHandler {
             totalitems: options.totalItems,
             search: options.search
         };
-        return axios.post(`${baseurl}/save/search`, config)
+        return axios.post(`${baseurl}/user/search`, config)
             .then(res => {
                 console.log(res);
             }).catch(err => {
@@ -28,7 +28,7 @@ class dataHandler {
 
     fetchSearchResults = (options) => {
         const { language, page, limit } = options;
-        return axios.get(`http://localhost:8000/get/search?page=${page}&limit=${limit}&query=${language}`).then(res => {
+        return axios.get(`${baseurl}/admin/search?page=${page}&limit=${limit}&query=${language}`).then(res => {
             return res;
         }).catch(err => {
             return null;

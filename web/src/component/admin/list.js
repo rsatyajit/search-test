@@ -30,11 +30,11 @@ class AdminList extends React.Component {
         let options = { language: this.state.search, page: this.state.page, limit: this.state.limit }
         new dataHandler().fetchSearchResults(options).then(response => {
             console.log(response)
-            if (response && response.status === 200) {
+            if (response && response.status === 201) {
                 this.setState(prevState => ({
-                    data: [...prevState.data, ...response.data.items]
+                    data: [...prevState.data, ...response.data.result.items]
                 }))
-                this.setState({ totalItems: response.data.total_count })
+                this.setState({ totalItems: response.data.result.total_count })
                 // this.storeSearchResults();
             } else {
                 this.setState({ data: [], totalItems: 0 });
